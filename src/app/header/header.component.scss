@@ -1,0 +1,59 @@
+header {
+    background-color: #FF5252;
+    padding: 20px 100px;
+    width: 100%;
+
+    img {
+        width: 117px;
+        height: 20px;
+        margin-right: 5%;
+    }
+
+    @media (max-width: 767px) {
+        padding: 10px;
+        img {
+            display: none;
+        }
+    }
+}
+
+.search-line {
+    display: flex;
+    height: 40px;
+    justify-content: stretch;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+
+    @media (max-width: 767px) {
+        max-width: 90%;
+    }
+}
+
+input,
+select {
+    height: 100%;
+    padding: 0 10px;
+}
+
+#vacancy-search {
+    width: 100%;
+    border-radius: 5px 0 0 5px;
+}
+
+#cities-select {
+    width: max-content;
+    border-radius: 0 5px 5px 0;
+    background-color: white;
+    color: rgb(33, 37, 39);
+}
+
+#search-button {
+    border: 2px solid white;
+    background-color: #FF5252;
+    border-radius: 3px;
+    padding: 5px 7px;
+    margin-left: 20px;
+}
+
+

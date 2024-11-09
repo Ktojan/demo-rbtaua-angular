@@ -1,0 +1,19 @@
+<header>
+    <div class="search-line">
+        <img src="/assets/images/logo.png" alt="logo">
+        <input type="search" [(ngModel)]="keywords" id="vacancy-search" name="q"  placeholder="Введіть ключові слова для пошуку">
+        <select [(ngModel)]="cityFilter" name="cities" id="cities-select">
+            <option *ngFor="let city of citiesList" [value]="city.id">{{city.ua}}</option>
+          </select>  
+        <button (click)="updateSearch.emit({keywords, cityFilter })" id="search-button">
+            <svg style="width:20px;" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M1 8.42511C1 4.32433 4.32433 1 8.42511 1C12.5259 1 15.8502 4.32433 15.8502 8.42511C15.8502 12.5259 12.5259 15.8502 8.42511 15.8502C4.32433 15.8502 1 12.5259 1 8.42511ZM8.42511 2.8C5.31845 2.8 2.8 5.31845 2.8 8.42511C2.8 11.5318 5.31845 14.0502 8.42511 14.0502C11.5318 14.0502 14.0502 11.5318 14.0502 8.42511C14.0502 5.31845 11.5318 2.8 8.42511 2.8Z"
+                    fill="white"></path>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M12.4004 12.4022C12.7519 12.0507 13.3217 12.0508 13.6732 12.4023L18.7338 17.4637C19.0853 17.8152 19.0853 18.385 18.7338 18.7365C18.3823 19.0879 17.8124 19.0879 17.461 18.7364L12.4003 13.675C12.0488 13.3235 12.0489 12.7536 12.4004 12.4022Z"
+                    fill="white"></path>
+            </svg>
+        </button>
+    </div>
+</header>

@@ -1,0 +1,58 @@
+<div *ngIf="data && !isDisliked" class="card">
+    <img *ngIf="data.designBannerUrl" [src]="data.designBannerUrl" alt="banner">
+    <div [style.padding.px]="20">
+        <div [ngClass]="{disliked: isDisliked}">
+            <p *ngIf="data.hot" class="banner new">
+                Гаряча
+            </p>
+            <div class="vacancy-desc">
+                <div>
+                    <h3>{{ data.title }}</h3>
+                    <p *ngIf="data.salary.amountFrom && data.salary.amountTo" class="salary"> 
+                        {{ data.salary.amountFrom }} - {{ data.salary.amountTo }} ₴   
+                    </p>
+                    <p><span class="company-name">{{data.company.name}}</span>
+                        <span class="city-name">{{data.city.name}}</span>
+                    </p>
+                </div>
+                <div>
+                    <img class="logo" [src]="data.company.logoUrl" alt="logo">
+                </div>
+            </div>
+
+            <div *ngIf="data.badges?.length > 0" class="badges">
+                <ul class="badges-list">
+                    <li *ngFor="let badge of data.badges">{{badge.name}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-buttons">
+            <div class="respond-button">
+
+                <button class="respond-btn" (click)="signUp()">
+                    <img class="apply-icon" src="/assets/images/Icon-Apply.png" [style.padding-right.px]="10">
+                    <p>Відгукнутись</p>
+                </button>
+                <button [style.margin-right.px]="30" (click)="toggleFavorite()">
+                    <img class="like" [src]="'/assets/images/star' + (isFavorite ? '_true': '') + '.png'">
+                </button>
+                <button (click)="isDisliked = !isDisliked">
+                    <img class="dislike" src="/assets/images/dislike.png">
+                </button>
+            </div>
+            <div>
+                <p class="publication-time">{{data.sortDateText}}</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="data && isDisliked" class="card disliked-card" [@fadeOutLeft]="animationState">
+    <p class="dislike-explain">Ми більше не будемо показувати цю вакансію в результатах пошуку і в списку
+        рекомендацій. Вона буде доступна в розділі «Приховані вакансії».</p>
+    <div class="flex action-buttons">
+        <button (click)="setDisliked()" class="primary-normal" type="button">Сховати вакансію</button>
+        <button (click)="isDisliked = false" class="additional-normal" type="button">Відмінити</button>
+    </div>
+</div>

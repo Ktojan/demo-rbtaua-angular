@@ -1,0 +1,50 @@
+<article class="list" *ngIf="vacancies | async as vacanciesArray; else loadingTemp">
+    <div class="top-line">
+        <div class="flex signup">
+            <b *ngIf="!showFavorites && !showDislikes" style="font-size: 24px;"> {{vacanciesArray.length}} вакансій </b>
+            <b *ngIf="showFavorites" style="font-size: 24px;"> {{favoriteVacancies.length}} вакансій </b>
+            <b *ngIf="showDislikes" style="font-size: 24px;"> {{dislikedVacancies.length}} вакансій </b>
+            <button id="signup">
+                <svg style="width:20px;" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                    <path
+                        d="M16.4165 9.95333C16.4195 12.0755 16.9177 14.1676 17.8715 16.0633C17.9365 16.1924 17.93 16.3452 17.8543 16.4683C17.7785 16.5914 17.6444 16.6665 17.4998 16.6667H2.4998C2.35548 16.6664 2.22159 16.5914 2.14589 16.4685C2.0702 16.3457 2.06348 16.1924 2.12814 16.0633C3.08189 14.1676 3.5801 12.0755 3.58314 9.95333V9.31333C3.54526 6.97962 4.57254 4.75575 6.37397 3.27167C7.07161 2.73572 7.88543 2.3712 8.7498 2.2075V1.25C8.7498 0.559644 9.30945 0 9.9998 0C10.6902 0 11.2498 0.559644 11.2498 1.25V2.19667C11.9424 2.32044 12.6035 2.58047 13.1948 2.96167C15.2563 4.41295 16.4634 6.79263 16.4165 9.31333V9.95333Z"
+                        fill="#FF5252"></path>
+                    <path
+                        d="M8.13651 17.5H11.8632C11.9694 17.4994 12.0587 17.5794 12.0698 17.685C12.0789 17.7619 12.0834 17.8392 12.0832 17.9167C12.0832 19.0673 11.1504 20 9.99984 20C8.84925 20 7.91651 19.0673 7.91651 17.9167C7.91631 17.8392 7.92076 17.7619 7.92984 17.685C7.9417 17.5798 8.03061 17.5002 8.13651 17.5Z"
+                        fill="#FF5252"></path>
+                </svg>
+                <div style="color: #FF5252; font-weight: bold; margin-left: 5px;">Підписатись</div>
+            </button>
+        </div>
+        <div>
+            <button (click)="showFavorites = false; showDislikes = false;" [class.selected]="!(showFavorites || showDislikes)">Всi</button>
+            <button (click)="showFavorite()" [class.selected]="showFavorites">Обрані</button>
+            <button (click)="showDisliked()" [class.selected]="showDislikes">Приховані</button>
+        </div>
+    </div>
+
+    <ng-container *ngIf="showFavorites || showDislikes; else vacanciesList">
+        <ng-container *ngIf="showFavorites">
+            <app-card *ngFor="let vacancyObject of favoriteVacancies"
+             [data]="vacancyObject" [isFavorite]="true" (selectVacancy)="selectVacancy($event)"></app-card>
+        </ng-container>
+        <ng-container *ngIf="showDislikes">
+            <app-card *ngFor="let vacancyObject of dislikedVacancies"
+             [data]="vacancyObject" (selectVacancy)="selectVacancy($event)"></app-card>
+        </ng-container>
+    </ng-container>
+
+    <ng-template #vacanciesList>      
+            <app-card *ngFor="let vacancyObject of vacanciesArray"
+            [data]="vacancyObject" (selectVacancy)="selectVacancy($event)"></app-card>
+    </ng-template>
+</article>
+
+
+<ng-template #loadingTemp>
+    <main class="loading-wrapper">
+        <h1>Завантажуємо...</h1>
+        <p></p>
+        <img style="width: 400px;" alt="loading..." src="assets/loading.gif" />
+    </main>
+</ng-template>

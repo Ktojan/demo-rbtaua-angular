@@ -1,0 +1,55 @@
+.top-line {
+    display: flex;
+    justify-content: space-between;
+    width: 750px;
+    height: 30px;
+    font-size: 1rem;
+    align-items: center;
+
+    button {
+        border: none;
+        margin-left: 20px;
+        padding: 7px;
+        background: unset;
+        color: #FF5252;
+
+        &.selected {
+            border: 2px solid red;
+            border-radius: 7px; 
+            font-weight: bold;
+        }
+    }
+
+    @media (max-width: 767px) {
+        justify-content: center;
+        
+        .signup {
+            display: none;
+        }
+    }
+}
+
+.list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    min-height: 75vh;
+}
+
+#signup {
+    display: flex;
+    align-items: center;
+}
+
+.loading-wrapper {
+    width: 100%;
+    height: 80vh;
+    align-content: center;
+    text-align: center;
+
+    h1 {
+        color: #FF5252;
+    }
+}
