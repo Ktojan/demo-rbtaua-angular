@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
 import { VACANCIES_REQUEST_BODY } from './model/request-body';
 import { NgIf } from '@angular/common';
+import { DEFAULT_VACANCIES } from './model/default-data';
 
 @Component({
   selector: 'app-root',

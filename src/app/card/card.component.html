@@ -8,7 +8,7 @@
             <div class="vacancy-desc">
                 <div>
                     <h3>{{ data.title }}</h3>
-                    <p *ngIf="data.salary.amountFrom && data.salary.amountTo" class="salary"> 
+                    <p *ngIf="data.salary && data.salary.amountFrom && data.salary.amountTo" class="salary"> 
                         {{ data.salary.amountFrom }} - {{ data.salary.amountTo }} ₴   
                     </p>
                     <p><span class="company-name">{{data.company.name}}</span>
