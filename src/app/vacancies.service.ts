@@ -18,7 +18,7 @@ const proxy = 'https://thingproxy.freeboard.io/fetch/'; //to handle CORS when de
   
 
   public fetchVacancies(body = {}, params = {q: 'getPublishedVacanciesList'}): Observable<any[]> {    
-    return this.http.post<any>(proxy + this.apiUrl, body, { params })
+    return this.http.post<any>(this.apiUrl, body, { params })
       .pipe(
         tap(data => console.log('Get vacancies result: ', data)),
         map(res => res.data.publishedVacancies.items)
